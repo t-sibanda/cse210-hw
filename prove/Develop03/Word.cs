@@ -1,16 +1,24 @@
+using System;
+
 public class Word
 {
-    public string Text { get; }
-    public bool IsHidden { get; set; }
+    private readonly string _text;
+    private bool _isHidden;
 
     public Word(string text)
     {
-        Text = text;
-        IsHidden = false;
+        _text = text;
+        _isHidden = false;
+    }
+
+    public bool IsHidden
+    {
+        get { return _isHidden; }
+        set { _isHidden = value; }
     }
 
     public string Display()
     {
-        return IsHidden ? new string('_', Text.Length) : Text;
+        return _isHidden ? new string('_', _text.Length) : _text;
     }
 }

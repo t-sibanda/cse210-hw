@@ -4,36 +4,32 @@ class Program
 {
     static void Main(string[] args)
     {
-        // Create a Scripture instance
-        Scripture scripture = new Scripture(new Reference("John", 3, 16, 16), "For God so loved the world, that he gave his only begotten Son, that whosoever believeth in him should not perish, but have everlasting life.");
+        // Create the scripture and its reference
+        Reference reference = new Reference("John", 3, 16);
+        string scriptureText = "For God so loved the world, that he gave his only begotten Son, that whosoever believeth in him should not perish, but have everlasting life.";
+        Scripture scripture = new Scripture(reference, scriptureText);
 
-        // Display the full scripture
-        Console.WriteLine(scripture.Reference.GetReferenceString());
-        Console.WriteLine(scripture.Text);
+        // Display initial scripture
+        Console.Clear();
+        scripture.Display();
+        Console.WriteLine("\nPress Enter to continue or type 'quit' to exit.");
 
-        Console.WriteLine("\nPress Enter to continue or 'quit' to exit.");
-
+        // Loop until the scripture is fully hidden or the user quits
         while (true)
         {
-            Console.ReadLine();
+            string input = Console.ReadLine()?.Trim().ToLower();
 
-
-            // Randomly hide a word
-            Random random = new Random();
-            List<Word> words = scripture.GetWords();
-            int index = random.Next(words.Count);
-            words[index].IsHidden = true;
-
-            // Clear the console and display the updated scripture
-            Console.Clear();
-            Console.WriteLine(scripture.Reference.GetReferenceString());
-            foreach (Word word in words)
+            if (input == "quit")
             {
-                Console.Write(word.Display() + " ");
+                Console.WriteLine("Thank you for using the Scripture Memorizer!");
+                break;
             }
-            Console.WriteLine();
 
-            if (words.All(word => word.IsHidden))
+            scripture.HideRandomWord();
+            Console.Clear();
+            scripture.Display();
+
+            if (scripture.IsComplete())
             {
                 Console.WriteLine("All words are hidden. Good job!");
                 break;
@@ -41,3 +37,4 @@ class Program
         }
     }
 }
+

@@ -1,35 +1,39 @@
 using System;
+
 public class Reference
 {
-    public string Book { get; }
-    public int Chapter { get; }
-    public int? StartVerse { get; }
-    public int? EndVerse { get; }
+    private readonly string _book;
+    private readonly int _chapter;
+    private readonly int? _startVerse;
+    private readonly int? _endVerse;
 
-    public Reference(string book, int chapter) 
-
+    // Constructor for single verse
+    public Reference(string book, int chapter, int verse)
     {
-        Book = book;
-        Chapter = chapter;
+        _book = book;
+        _chapter = chapter;
+        _startVerse = verse;
+        _endVerse = null;
     }
 
+    // Constructor for verse range
     public Reference(string book, int chapter, int startVerse, int endVerse)
     {
-        Book = book;
-        Chapter = chapter;
-        StartVerse = startVerse;
-        EndVerse = endVerse;
+        _book = book;
+        _chapter = chapter;
+        _startVerse = startVerse;
+        _endVerse = endVerse;
     }
 
     public string GetReferenceString()
     {
-        if (EndVerse.HasValue)
+        if (_endVerse.HasValue)
         {
-            return $"{Book} {Chapter}:{StartVerse}-{EndVerse}";
+            return $"{_book} {_chapter}:{_startVerse}-{_endVerse}";
         }
         else
         {
-            return $"{Book} {Chapter}:{StartVerse}";
+            return $"{_book} {_chapter}:{_startVerse}";
         }
     }
 }
