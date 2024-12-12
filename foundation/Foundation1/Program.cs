@@ -10,13 +10,13 @@ public class Program
 
         videos.Add(new Video
         {
-            Title = "Amazing Cat Video",
-            Author = "FunnyCatLover",
+            Title = "Coming to ESTEEM",
+            Author = "Terrence Sibanda",
             LengthInSeconds = 120,
             Comments = new List<Comment>
             {
-                new Comment { CommenterName = "User1", Text = "So cute!" },
-                new Comment { CommenterName = "User2", Text = "Hilarious!" },
+                new Comment { CommenterName = "User1", Text = "So informative!" },
+                new Comment { CommenterName = "User2", Text = "I'm interested!" },
                 new Comment { CommenterName = "User3", Text = "Love it!" }
             }
         });
